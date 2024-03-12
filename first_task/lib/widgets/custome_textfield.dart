@@ -12,17 +12,17 @@ class CustomeTextField extends StatelessWidget {
     return TextField(
       onChanged: onChange,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.search,color: Colors.black,),
+        prefixIcon: const Icon(Icons.search,color: Colors.black,),
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey),
+        hintStyle: const TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
-          color: Colors.black,
+            borderSide: const BorderSide(
+          color:  Colors.black,
         )),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
           color: Colors.black,
           width: 2.0,
         )),
