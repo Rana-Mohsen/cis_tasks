@@ -1,4 +1,5 @@
 import 'package:first_task/widgets/custome_textfield.dart';
+import 'package:first_task/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,13 +14,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        title:Center(child: Padding(
-          padding: const EdgeInsets.only(left: 28),
+        title:const Center(child: Padding(
+          padding: EdgeInsets.only(left: 28),
           child: Text("Test"),
         )),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 12),
+            padding: EdgeInsets.only(right: 12),
             child: Icon(Icons.favorite_border_outlined),
           ),
         ],
@@ -28,7 +29,8 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
         child: Column(
           children: [
-            CustomeTextField(onChange: (value){},hintText: 'Search',)
+            CustomeTextField(onChange: (value){},hintText: 'Search',),
+            ItemCard(),
           ],
         ),
       ),
