@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ItemCard extends StatefulWidget {
   const ItemCard({super.key});
@@ -40,7 +39,7 @@ class _ItemCardState extends State<ItemCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("flower"),
-                SizedBox(
+                const SizedBox(
                   width: 100,
                 ),
                 GestureDetector(
@@ -49,11 +48,11 @@ class _ItemCardState extends State<ItemCard> {
                       setState(() {});
                     },
                     child: isFavorit
-                        ? Icon(
+                        ? const Icon(
                             Icons.favorite,
                             color: Colors.red,
                           )
-                        : Icon(Icons.favorite_border_outlined))
+                        : const Icon(Icons.favorite_border_outlined))
               ],
             )
           ],
