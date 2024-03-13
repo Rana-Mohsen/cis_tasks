@@ -1,3 +1,4 @@
+import 'package:first_task/widgets/custom_button.dart';
 import 'package:first_task/widgets/custome_textfield.dart';
 import 'package:first_task/widgets/item_card.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,10 @@ class _HomePageState extends State<HomePage> {
             onChange: (value) {},
             hintText: 'Search',
           ),
-          // ItemCard(),
+          CustomButton(),
           Expanded(
             child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1.05,
                   crossAxisSpacing: 8,
