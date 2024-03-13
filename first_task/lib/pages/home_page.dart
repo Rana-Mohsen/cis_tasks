@@ -35,7 +35,11 @@ class _HomePageState extends State<HomePage> {
             onChange: (value) {},
             hintText: 'Search',
           ),
-          CustomButton(),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            CustomButton(title: "button1"),
+            CustomButton(title: "button2"),
+            CustomButton(title: "button3")
+          ]),
           Expanded(
             child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
