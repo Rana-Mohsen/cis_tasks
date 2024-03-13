@@ -16,16 +16,16 @@ class _ItemCardState extends State<ItemCard> {
         decoration: BoxDecoration(
             color: const Color(0xfff7f2f9),
             borderRadius: BorderRadius.circular(16)),
-        height: 200,
-        width: 190,
+        // height: 200,
+        // width: 190,
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Container(
-                height: 140,
-                width: 150,
+                height: 165,
+                width: 175,
                 child: Image.asset(
                   "assets/images/yellow.jpg",
                   fit: BoxFit.fill,
