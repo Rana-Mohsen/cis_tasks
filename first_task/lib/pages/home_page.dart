@@ -1,6 +1,7 @@
-import 'package:first_task/widgets/custom_button.dart';
+import 'package:first_task/widgets/custom_choice_chip.dart';
 import 'package:first_task/widgets/custome_textfield.dart';
 import 'package:first_task/widgets/item_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,29 +32,31 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Column(children: [
-          CustomeTextField(
-            onChange: (value) {},
-            hintText: 'Search',
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            CustomButton(title: "button1"),
-            CustomButton(title: "button2"),
-            CustomButton(title: "button3")
-          ]),
-          Expanded(
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.05,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemBuilder: (context, index) {
-                  return ItemCard();
-                }),
-          )
-        ]),
+        child: Column(
+          children: [
+              CustomeTextField(
+                onChange: (value) {},
+                hintText: 'Search',
+              ),
+              Wrap(
+                children: List.generate(3, (index){
+                  return CustomChoiceChip(index: index,);
+                })
+              ),
+              Expanded(
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.05,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ItemCard();
+                    }),
+              )
+            ],
+        ),
       ),
     );
   }
