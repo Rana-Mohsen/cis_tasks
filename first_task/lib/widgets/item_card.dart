@@ -1,15 +1,17 @@
+import 'package:first_task/models/item_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatefulWidget {
-  const ItemCard({super.key});
+  const ItemCard(
+      {super.key,
+      required this.item});
+  final ItemModel item;
 
   @override
   State<ItemCard> createState() => _ItemCardState();
 }
 
 class _ItemCardState extends State<ItemCard> {
-  bool isFavorit = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +29,7 @@ class _ItemCardState extends State<ItemCard> {
                 height: 165,
                 width: 175,
                 child: Image.asset(
-                  "assets/images/yellow.jpg",
+                  "assets/images/${widget.item.image}",
                   fit: BoxFit.fill,
                 ),
               ),
@@ -38,16 +40,16 @@ class _ItemCardState extends State<ItemCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("flower"),
+                Text(widget.item.name!),
                 const SizedBox(
                   width: 100,
                 ),
                 GestureDetector(
                     onTap: () {
-                      isFavorit = !isFavorit;
+                      widget.item.isFavorit = !widget.item.isFavorit;
                       setState(() {});
                     },
-                    child: isFavorit
+                    child: widget.item.isFavorit
                         ? const Icon(
                             Icons.favorite,
                             color: Colors.red,
