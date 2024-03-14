@@ -38,11 +38,7 @@ class _HomePageState extends State<HomePage> {
                 onChange: (value) {},
                 hintText: 'Search',
               ),
-              Wrap(
-                children: List.generate(3, (index){
-                  return CustomChoiceChip(index: index,);
-                })
-              ),
+              CustomChoiceChip(),
               Expanded(
                 child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
