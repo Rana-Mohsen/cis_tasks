@@ -1,12 +1,10 @@
 import 'package:first_task/models/item_model.dart';
 import 'package:first_task/pages/favorit_page.dart';
+import 'package:first_task/pages/item_page.dart';
 import 'package:first_task/widgets/custom_choice_chip.dart';
 import 'package:first_task/widgets/custom_grid.dart';
 import 'package:first_task/widgets/custome_textfield.dart';
-import 'package:first_task/widgets/item_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,14 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isSelected = false;
-  List<ItemModel> items = [
-    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
-    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +27,15 @@ class _HomePageState extends State<HomePage> {
         )),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 12),
+            padding: const EdgeInsets.only(right: 12),
             child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => FavoritPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FavoritPage()));
                 },
-                child: Icon(Icons.favorite_border_outlined)),
+                child: const Icon(Icons.favorite_border_outlined)),
           ),
         ],
       ),
@@ -55,7 +47,7 @@ class _HomePageState extends State<HomePage> {
               onChange: (value) {},
               hintText: 'Search',
             ),
-            CustomChoiceChip(),
+            const CustomChoiceChip(),
             Expanded(
                 child: CustomGrid(
               len: items.length,
