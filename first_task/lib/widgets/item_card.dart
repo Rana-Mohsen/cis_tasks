@@ -18,9 +18,13 @@ class _ItemCardState extends State<ItemCard> {
     List<ItemModel> favoritItem =
         BlocProvider.of<FavoritCubit>(context).favoritItems;
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ItemPage(itemData: widget.item,)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ItemPage(
+                      itemData: widget.item,
+                    )));
       },
       child: Container(
           decoration: BoxDecoration(
@@ -34,7 +38,7 @@ class _ItemCardState extends State<ItemCard> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: SizedBox(
-                  height: 165,
+                  height: 120,
                   width: 175,
                   child: Image.asset(
                     "assets/images/${widget.item.mainImage}",

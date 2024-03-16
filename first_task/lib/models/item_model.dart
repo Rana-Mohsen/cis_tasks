@@ -8,10 +8,10 @@ class ItemModel {
 }
 
  List<ItemModel> items = [
-    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
-    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
+    ItemModel("pink", "pink.jpg", ["pink.jpg","pink1.jpg", "pink2.jpg"], false),
+    ItemModel("white", "white.jpg", ["white.jpg","white1.jpg", "white2.jpg"], false),
+    ItemModel("yellow", "yellow.jpg", ["yellow.jpg","yellow1.jpg", "yellow2.jpg"], false),
+    ItemModel("pink", "pink.jpg", ["pink.jpg","pink1.jpg", "pink2.jpg"], false),
+    ItemModel("white", "white.jpg", ["white.jpg","white1.jpg", "white2.jpg"], false),
+    ItemModel("yellow", "yellow.jpg", ["yellow.jpg","yellow1.jpg", "yellow2.jpg"], false),
   ];
