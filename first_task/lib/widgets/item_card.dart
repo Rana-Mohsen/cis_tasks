@@ -1,10 +1,10 @@
+import 'package:first_task/cubits/favorit/favorit_cubit.dart';
 import 'package:first_task/models/item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatefulWidget {
-  const ItemCard(
-      {super.key,
-      required this.item});
+  const ItemCard({super.key, required this.item});
   final ItemModel item;
 
   @override
@@ -14,6 +14,8 @@ class ItemCard extends StatefulWidget {
 class _ItemCardState extends State<ItemCard> {
   @override
   Widget build(BuildContext context) {
+    List<ItemModel> favoritItem =
+        BlocProvider.of<FavoritCubit>(context).favoritItems;
     return Container(
         decoration: BoxDecoration(
             color: const Color(0xfff7f2f9),
@@ -47,6 +49,13 @@ class _ItemCardState extends State<ItemCard> {
                 GestureDetector(
                     onTap: () {
                       widget.item.isFavorit = !widget.item.isFavorit;
+                      if (widget.item.isFavorit) {
+                        favoritItem.add(widget.item);
+                        BlocProvider.of<FavoritCubit>(context).favorit();
+                      } else {
+                        favoritItem.remove(widget.item);
+                        BlocProvider.of<FavoritCubit>(context).favorit();
+                      }
                       setState(() {});
                     },
                     child: widget.item.isFavorit

@@ -14,22 +14,26 @@ class FavoritPage extends StatefulWidget {
 class _FavoritPageState extends State<FavoritPage> {
   @override
   Widget build(BuildContext context) {
-      List<ItemModel> items = BlocProvider.of<FavoritCubit>(context).favoritItems;
+    List<ItemModel> items = BlocProvider.of<FavoritCubit>(context).favoritItems;
 
     return Scaffold(
-      appBar: AppBar(),
-      body: BlocBuilder<FavoritCubit, FavoritState>(
-        builder: (context, state) {
-          if (state == ShowFavorit()) {
-            return CustomGrid(len: items.length,item: items,);
-          } else {
-            return Center(
-              child: Text("No Favorit Items"),
-            );
-          }
-          ;
-        },
-      ),
-    );
+        appBar: AppBar(),
+        body: BlocBuilder<FavoritCubit, FavoritState>(
+          builder: (context, state) {
+            print(state.toString());
+            if (state is ShowFavorit) {
+              return CustomGrid(
+                len: items.length,
+                item: items,
+              );
+            }
+            if (state is NoFavorit) {
+              return Center(
+                child: Text("No Favorit Items"),
+              );
+            }
+            return Text("No state");
+          },
+        ));
   }
 }

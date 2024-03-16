@@ -13,20 +13,18 @@ class CustomGrid extends StatefulWidget {
 class _CustoGridState extends State<CustomGrid> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.05,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-          ),
-          itemCount: widget.len,
-          itemBuilder: (context, index) {
-            return ItemCard(
-              item: widget.item[index],
-            );
-          }),
-    );
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.05,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+        ),
+        itemCount: widget.len,
+        itemBuilder: (context, index) {
+          return ItemCard(
+            item: widget.item[index],
+          );
+        });
   }
 }

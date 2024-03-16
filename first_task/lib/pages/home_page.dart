@@ -16,16 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   bool isSelected = false;
   List<ItemModel> items = [
-  ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-  ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-  ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
-  ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
-  ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
-  ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
-];
+    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
+    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
+    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
+    ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
+    ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
+    ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +35,15 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(left: 28),
           child: Text("Test"),
         )),
-        actions:  [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 12),
-            child: GestureDetector(onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoritPage()));
-            },child: Icon(Icons.favorite_border_outlined)),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FavoritPage()));
+                },
+                child: Icon(Icons.favorite_border_outlined)),
           ),
         ],
       ),
@@ -54,7 +56,11 @@ class _HomePageState extends State<HomePage> {
               hintText: 'Search',
             ),
             CustomChoiceChip(),
-            CustomGrid(len: items.length,item: items,)
+            Expanded(
+                child: CustomGrid(
+              len: items.length,
+              item: items,
+            ))
           ],
         ),
       ),
