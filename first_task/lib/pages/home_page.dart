@@ -1,5 +1,7 @@
 import 'package:first_task/models/item_model.dart';
+import 'package:first_task/pages/favorit_page.dart';
 import 'package:first_task/widgets/custom_choice_chip.dart';
+import 'package:first_task/widgets/custom_grid.dart';
 import 'package:first_task/widgets/custome_textfield.dart';
 import 'package:first_task/widgets/item_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +18,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   bool isSelected = false;
+  List<ItemModel> items = [
+  ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
+  ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
+  ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
+  ItemModel("pink", "pink.jpg", ["pink1.jpg", "pink2.jpg"], false),
+  ItemModel("white", "white.jpg", ["white1.jpg", "white2.jpg"], false),
+  ItemModel("yellow", "yellow.jpg", ["yellow1.jpg", "yellow2.jpg"], false),
+];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +36,12 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(left: 28),
           child: Text("Test"),
         )),
-        actions: const [
+        actions:  [
           Padding(
             padding: EdgeInsets.only(right: 12),
-            child: Icon(Icons.favorite_border_outlined),
+            child: GestureDetector(onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoritPage()));
+            },child: Icon(Icons.favorite_border_outlined)),
           ),
         ],
       ),
@@ -41,21 +54,7 @@ class _HomePageState extends State<HomePage> {
               hintText: 'Search',
             ),
             CustomChoiceChip(),
-            Expanded(
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.05,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return ItemCard(
-                      item: items[index],
-                    );
-                  }),
-            )
+            CustomGrid(len: items.length,item: items,)
           ],
         ),
       ),
