@@ -14,14 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<ItemModel> items = [
-    ItemModel("pink", "pink.jpg", false),
-    ItemModel("white", "white.jpg", false),
-    ItemModel("yellow", "yellow.jpg", false),
-    ItemModel("pink", "pink.jpg", false),
-    ItemModel("white", "white.jpg", false),
-    ItemModel("yellow", "yellow.jpg", false),
-  ];
+
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

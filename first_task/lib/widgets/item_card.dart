@@ -29,7 +29,7 @@ class _ItemCardState extends State<ItemCard> {
                 height: 165,
                 width: 175,
                 child: Image.asset(
-                  "assets/images/${widget.item.image}",
+                  "assets/images/${widget.item.mainImage}",
                   fit: BoxFit.fill,
                 ),
               ),
