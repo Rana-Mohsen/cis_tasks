@@ -27,12 +27,12 @@ class _FavoritPageState extends State<FavoritPage> {
                 item: items,
               );
             }
-            if (state is NoFavorit) {
-              return Center(
+            if (state is NoFavorit || state is FavoritInitial) {
+              return const Center(
                 child: Text("No Favorit Items"),
               );
             }
-            return Text("No state");
+            return const Text("No state");
           },
         ));
   }
