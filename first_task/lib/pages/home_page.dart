@@ -15,6 +15,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isSelected = false;
+  List<ItemModel> _foundItems = [];
+  initState() {
+    // at the beginning, all users are shown
+    _foundItems = items;
+    super.initState();
+  }
+
+  // This function is called whenever the text field changes
+  void _runFilter(String enteredKeyword) {
+    List<ItemModel> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = items;
+    } else {
+      results = items
+          .where((item) =>
+              item.name!.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+
+    // Refresh the UI
+    setState(() {
+      _foundItems = results;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +70,16 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             CustomeTextField(
-              onChange: (value) {},
+              onChange: (value) {
+                _runFilter(value);
+              },
               hintText: 'Search',
             ),
             const CustomChoiceChip(),
             Expanded(
                 child: CustomGrid(
-              len: items.length,
-              item: items,
+              len: _foundItems.length,
+              item: _foundItems,
             ))
           ],
         ),
