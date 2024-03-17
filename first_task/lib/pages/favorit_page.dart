@@ -15,16 +15,59 @@ class _FavoritPageState extends State<FavoritPage> {
   @override
   Widget build(BuildContext context) {
     List<ItemModel> items = BlocProvider.of<FavoritCubit>(context).favoritItems;
-
+    List<ItemModel> favoritItem =
+        BlocProvider.of<FavoritCubit>(context).favoritItems;
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Center(
+            child: Text("Favorits(${items.length})"),
+          ),
+        ),
         body: BlocBuilder<FavoritCubit, FavoritState>(
           builder: (context, state) {
             print(state.toString());
             if (state is ShowFavorit) {
-              return CustomGrid(
-                len: items.length,
-                item: items,
+              return ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Card(
+                      surfaceTintColor: Colors.grey.withOpacity(1),
+                      elevation: 1, // Add shadow
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(15), // Rounded corners
+                      ),
+                      child: ListTile(
+                        //tileColor: Colors.grey,
+                        leading: Image.asset(
+                          "assets/images/${items[index].mainImage}",
+                        ),
+                        title: Text("${items[index].name}"),
+                        trailing: IconButton(
+                          onPressed: () {
+                            items[index].isFavorit = !items[index].isFavorit;
+                            if (items[index].isFavorit) {
+                              favoritItem.add(items[index]);
+                              BlocProvider.of<FavoritCubit>(context).favorit();
+                            } else {
+                              favoritItem.remove(items[index]);
+                              BlocProvider.of<FavoritCubit>(context).favorit();
+                            }
+                            setState(() {});
+                          },
+                          icon: items[index].isFavorit
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                )
+                              : const Icon(Icons.favorite_border_outlined),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               );
             }
             if (state is NoFavorit || state is FavoritInitial) {

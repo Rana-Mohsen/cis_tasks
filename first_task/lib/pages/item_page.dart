@@ -41,11 +41,14 @@ class _ItemPageState extends State<ItemPage> {
                     },
                     itemCount: 3,
                     itemBuilder: (_, i) {
-                      return Image.asset(
-                        "assets/images/${widget.itemData.images[i]}",
-                        //height: 40,
-                        // width: 12,
-                        fit: BoxFit.fill,
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Image.asset(
+                          "assets/images/${widget.itemData.images[i]}",
+                          //height: 40,
+                          // width: 12,
+                          fit: BoxFit.fill,
+                        ),
                       );
                     }),
               ),
