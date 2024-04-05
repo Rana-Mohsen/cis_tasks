@@ -1,9 +1,9 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:first_task/cubits/item/item_cubit.dart';
 import 'package:first_task/models/item_model.dart';
 import 'package:first_task/widgets/custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPage extends StatefulWidget {
   const ItemPage({super.key, required this.itemData});
@@ -13,10 +13,9 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-  int currentIndex = 0;
-  PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
+    var cubit = BlocProvider.of<ItemCubit>(context);
     double hight = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -33,11 +32,9 @@ class _ItemPageState extends State<ItemPage> {
                 height: hight / 4,
                 width: width / 1.5,
                 child: PageView.builder(
-                    controller: _pageController,
+                    controller: cubit.pageController,
                     onPageChanged: (value) {
-                      setState(() {
-                        currentIndex = value;
-                      });
+                      cubit.currentImage(value);
                     },
                     itemCount: 3,
                     itemBuilder: (_, i) {
@@ -63,46 +60,52 @@ class _ItemPageState extends State<ItemPage> {
                     IconButton(
                         iconSize: 30,
                         onPressed: () {
-                          if (currentIndex > 0) {
-                            currentIndex -= 1;
-                            _pageController.previousPage(
-                                duration: Duration(milliseconds: 200),
-                                curve: Curves.easeIn);
-                            setState(() {});
-                          }
+                          cubit.previousImage();
+                          // if (currentIndex > 0) {
+                          //   currentIndex -= 1;
+                          //   _pageController.previousPage(
+                          //       duration: const Duration(milliseconds: 200),
+                          //       curve: Curves.easeIn);
+                          //   setState(() {});
+                          // }
                         },
-                        icon: Icon(Icons.arrow_back)),
-                    DotsIndicator(
-                      position: currentIndex,
-                      dotsCount: widget.itemData.images.length,
-                      decorator: DotsDecorator(
-                        color: Colors.grey,
-                        activeColor: Colors.purple,
-                        spacing: const EdgeInsets.only(left: 4, right: 4),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        size: const Size.square(6.0),
-                        activeSize: const Size(28.0, 6.0),
-                        activeShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                      ),
+                        icon: const Icon(Icons.arrow_back)),
+                    BlocBuilder<ItemCubit, ItemState>(
+                      builder: (context, state) {
+                        return DotsIndicator(
+                          position: cubit.currentIndex,
+                          dotsCount: widget.itemData.images.length,
+                          decorator: DotsDecorator(
+                            color: Colors.grey,
+                            activeColor: Colors.purple,
+                            spacing: const EdgeInsets.only(left: 4, right: 4),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            size: const Size.square(6.0),
+                            activeSize: const Size(28.0, 6.0),
+                            activeShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                          ),
+                        );
+                      },
                     ),
                     IconButton(
                         iconSize: 30,
                         onPressed: () {
-                          if (currentIndex < 2) {
-                            currentIndex += 1;
-                            _pageController.nextPage(
-                                duration: Duration(milliseconds: 200),
-                                curve: Curves.easeIn);
-                            setState(() {});
-                          }
+                          cubit.nextImage();
+                          // if (currentIndex < 2) {
+                          //   currentIndex += 1;
+                          //   _pageController.nextPage(
+                          //       duration: const Duration(milliseconds: 200),
+                          //       curve: Curves.easeIn);
+                          //   setState(() {});
+                          // }
                         },
-                        icon: Icon(Icons.arrow_forward)),
+                        icon: const Icon(Icons.arrow_forward)),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -110,9 +113,10 @@ class _ItemPageState extends State<ItemPage> {
                 children: [
                   Text(
                     widget.itemData.name!,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text("5 satrs",
+                  const Text("5 satrs",
                       style: TextStyle(
                         fontSize: 20,
                       )),
@@ -120,7 +124,7 @@ class _ItemPageState extends State<ItemPage> {
               ),
               SizedBox(
                 width: width / 1.3,
-                child: Text(
+                child: const Text(
                   "flowerflowerflowerflowerflowerflower",
                   style: TextStyle(
                       fontSize: 20,
@@ -128,11 +132,11 @@ class _ItemPageState extends State<ItemPage> {
                       color: Colors.grey),
                 ),
               ),
-              CustomButton(title: "Add To Cart", color: Colors.yellow),
-              SizedBox(
+              const CustomButton(title: "Add To Cart", color: Colors.yellow),
+              const SizedBox(
                 height: 10,
               ),
-              CustomButton(title: "Buy Now", color: Colors.orange),
+              const CustomButton(title: "Buy Now", color: Colors.orange),
             ],
           ),
         ),

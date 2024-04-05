@@ -1,6 +1,5 @@
 import 'package:first_task/cubits/favorit/favorit_cubit.dart';
 import 'package:first_task/models/item_model.dart';
-import 'package:first_task/widgets/custom_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,12 +49,12 @@ class _FavoritPageState extends State<FavoritPage> {
                             items[index].isFavorit = !items[index].isFavorit;
                             if (items[index].isFavorit) {
                               favoritItem.add(items[index]);
-                              BlocProvider.of<FavoritCubit>(context).favorit();
                             } else {
                               favoritItem.remove(items[index]);
-                              BlocProvider.of<FavoritCubit>(context).favorit();
                             }
-                            setState(() {});
+                            BlocProvider.of<FavoritCubit>(context).favorit();
+
+                            //setState(() {});
                           },
                           icon: items[index].isFavorit
                               ? const Icon(
